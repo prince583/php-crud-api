@@ -1,5 +1,5 @@
 <?php
-    class Employee{
+    class Tutorial{
 
         // Connection
         private $conn;
@@ -23,7 +23,7 @@
         }
 
         // GET ALL
-        public function getEmployees(){
+        public function getTutorials(){
             $sqlQuery = "SELECT id,title,description FROM " . $this->db_table . "";
             $stmt = $this->conn->prepare($sqlQuery);
             $stmt->execute();
@@ -31,7 +31,7 @@
         }
 
         // CREATE
-        public function createEmployee(){
+        public function createTutorial(){
             $sqlQuery = "INSERT INTO
                         ". $this->db_table ."
                     SET 
@@ -61,7 +61,7 @@
         }
 
         // READ single
-        public function getSingleEmployee(){
+        public function getSingleTutorial(){
             $sqlQuery = "SELECT
                         id, 
                         title,
@@ -92,7 +92,7 @@
         }        
 
         // UPDATE
-        public function updateEmployee(){
+        public function updateTutorial(){
             $sqlQuery = "UPDATE
                         ". $this->db_table ."
                     SET
@@ -109,7 +109,7 @@
             //$this->age=htmlspecialchars(strip_tags($this->age));
             //$this->designation=htmlspecialchars(strip_tags($this->designation));
             //$this->created=htmlspecialchars(strip_tags($this->created));
-            //$this->id=htmlspecialchars(strip_tags($this->id));
+            $this->id=htmlspecialchars(strip_tags($this->id));
         
             // bind data
             $stmt->bindParam(":title", $this->title);
@@ -117,7 +117,7 @@
             //$stmt->bindParam(":age", $this->age);
             //$stmt->bindParam(":designation", $this->designation);
            // $stmt->bindParam(":created", $this->created);
-            //$stmt->bindParam(":id", $this->id);
+            $stmt->bindParam(":id", $this->id);
         
             if($stmt->execute()){
                return true;
@@ -126,8 +126,8 @@
         }
 
         // DELETE
-        function deleteEmployee(){
-            return "Hello";
+        function deleteTutorial(){
+            
             $sqlQuery = "DELETE FROM " . $this->db_table . " WHERE id = ?";
             $stmt = $this->conn->prepare($sqlQuery);
         

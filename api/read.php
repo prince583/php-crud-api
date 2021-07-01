@@ -8,19 +8,19 @@
     $database = new Database();
     $db = $database->getConnection();
 
-    $items = new Employee($db);
+    $items = new Tutorial($db);
 
-    $stmt = $items->getEmployees();
+    $stmt = $items->getTutorials();
     $itemCount = $stmt->rowCount();
 
 
-    echo json_encode($itemCount);
+   // echo json_encode($itemCount);
 
     if($itemCount > 0){
         
-        $employeeArr = array();
-        $employeeArr["body"] = array();
-        $employeeArr["itemCount"] = $itemCount;
+        $TutorialArr = array();
+        $TutorialArr["body"] = array();
+        $TutorialArr["itemCount"] = $itemCount;
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             extract($row);
@@ -33,9 +33,9 @@
                // "created" => $created
             );
 
-            array_push($employeeArr["body"], $e);
+            array_push($TutorialArr["body"], $e);
         }
-        echo json_encode($employeeArr);
+        echo json_encode($TutorialArr);
     }
 
     else{

@@ -11,10 +11,10 @@
     $database = new Database();
     $db = $database->getConnection();
 
-    $item = new Employee($db);
+    $item = new Tutorial($db);
 
     $data = json_decode(file_get_contents("php://input"));
-    echo $data;
+    //return json_encode($data);
 
     $item->title = $data->title;
     $item->description = $data->description;
@@ -22,13 +22,14 @@
     //$item->designation = $data->designation;
     //$item->created = date('Y-m-d H:i:s');
     
-    if($item->createEmployee()){
-        echo 'Employee created successfully.';
+    if($item->createTutorial()){
+        //echo 'Tutorial created successfully.';
         http_response_code(200);
         echo json_encode(
-            array("message" => 'Employee created successfully.')
+            array("message" => 'Tutorial created successfully.')
         );
     } else{
-        echo 'Employee could not be created.';
+        http_response_code(422);
+        echo 'Tutorial could not be created.';
     }
 ?>
